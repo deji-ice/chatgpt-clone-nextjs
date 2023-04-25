@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div className="flex text-white flex-col items-center h-screen justify-center px-2 ">
-      <h1 className="text-5xl font-bold mb-20">Chat GPT</h1>
+    <div className="flex text-white flex-col items-center justify-center px-2 h-screen">
+      <h1 className="text-4xl font-bold mb-20">Chat GPT</h1>
       <div className=" flex space-x-2 text-center">
         <div className="flex-1 flex flex-col items-center">
           <div className="flex flex-col items-center mb-5">
@@ -42,7 +42,7 @@ export default function Home() {
           <div className="space-y-5">
             <p className="infoText">"Got any creative ideas for a 10 year old’s birthday?"</p>
             <p className="infoText">"Got any creative ideas for a 10 year old’s birthday?"</p>
-            <p className="infoText">"ChatGPT may generate responses that are biased or offensive, as it has been trained on a large corpus of text that may contain problematic language or attitudes."</p>
+            <p className="infoText">"ChatGPT may generate responses that are offensive"</p>
           </div>
         </div>
       </div>
