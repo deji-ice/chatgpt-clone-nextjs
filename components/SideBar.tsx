@@ -2,29 +2,50 @@
 
 import { useSession, signOut } from "next-auth/react";
 import NewChat from "./NewChat"
-import { db } from "../firebase";;
+import { db } from "../firebase";
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { DocumentReference, collection, getFirestore, orderBy, query } from "firebase/firestore";
+import ChatRow from "./ChatRow";
+import { useEffect } from "react";
 
 const SideBar = () => {
   const { data: session } = useSession();
+
+  const [chats , loading, error] = useCollection(
+    session && query(collection(db, "users", session?.user?.email!, "chats"), 
+    orderBy("createdAt", "desc"))
+  );
+
+  useEffect(()=>{
+    console.log(chats?.docs);
+    
+  }, [])
+  
+  // console.log(typeof db)
+
+  // console.log(chats instanceof DocumentReference)
+  
   return (
-    <div className=" text-white flex flex-col p-2 h-screen text-sm ">
+    <div className=" text-white flex flex-col p-2 h-screen text-sm relative">
       <div className="flex-1">
-        <div>
+        <div className="overflow-y-auto">
           <NewChat />
           <div>AI Model selecttion </div>
           {/* map through chat rows */}
-          <div>
-
-          </div>
+        
+          {chats?.docs.map(chat => (
+            <ChatRow key={chat.id} id={chat.id} />
+          ))}
+        
         </div> 
       </div>
       {session && (
         //create logout? pop up modal
         <div
-          className="rounded-lg px-5 py-3 text-sm flex items-center
+          className="px-5 py-3 text-sm flex items-center bg-gray-700 max-w-[5rem] md:min-w-[18.5rem] overflow-hidden
     hover:bg-gray-700/70 space-x-2 cursor-pointer text-gray-300
     // eslint-disable-next-line @next/next/no-img-element
-    transition-all duration-200 ease-out"
+    transition-all duration-200 ease-out fixed bottom-0 "
           onClick={() => signOut()}
         >
           {" "}

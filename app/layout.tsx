@@ -2,7 +2,6 @@ import SideBar from "@/components/SideBar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { getServerSession } from "next-auth";
-
 import SessionProvider from "@/components/SessionProvider";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Login from "@/components/Login";
