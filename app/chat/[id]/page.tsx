@@ -1,7 +1,19 @@
+import Chat from "@/components/Chat";
+import ChatInput from "@/components/ChatInput";
 import React from "react";
 
-const ChatPage = () => {
-  return <div className="text-white">ChatPage</div>;
+type Props ={
+  params:{
+    id:string
+  }
+}
+
+const ChatPage = ({params: {id} }: Props) => {
+  return <div className="flex flex-col">
+
+    <Chat chatId={id}/>  
+    <ChatInput chatId={id}/>
+  </div>;
 };
 
 export default ChatPage;
